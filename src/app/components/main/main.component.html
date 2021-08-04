@@ -1,0 +1,6 @@
+<mat-toolbar>
+  <div class="spacer"></div>
+  <button mat-button routerLink="login" *ngIf="(isAuthenticated$ | async) === false">Войти</button>
+  <button mat-button (click)="logout()" *ngIf="isAuthenticated$ | async">Выйти</button>
+</mat-toolbar>
+<router-outlet></router-outlet>

@@ -1,0 +1,13 @@
+form {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}
+
+.form-control.checkbox {
+  display: flex;
+  width: 160px;
+  label {
+    width: 100%;
+  }
+}

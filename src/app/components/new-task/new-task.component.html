@@ -1,0 +1,36 @@
+<mat-toolbar>
+  <a mat-button routerLink="../">Назад</a>
+  <span>
+    Новая задача
+  </span>
+</mat-toolbar>
+<form [formGroup]="form" (ngSubmit)="create()">
+
+  <mat-form-field>
+    <mat-label>Пользователь</mat-label>
+    <input type="text" matInput id="username" name="username" required autocomplete="off" autofocus [formControl]="formModel.username">
+    <mat-error *ngIf="formModel.username?.errors?.required">Имя пользователя обязательно для заполнения</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input type="text" matInput id="email" name="email" required autocomplete="off" [formControl]="formModel.email">
+    <mat-error *ngIf="formModel.email?.errors?.required">Email обязателен для заполнения</mat-error>
+    <mat-error *ngIf="formModel.email?.errors?.email">Некорректный email</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Текст</mat-label>
+    <textarea type="text" matInput id="text" name="text" required [formControl]="formModel.text"></textarea>
+    <mat-error *ngIf="formModel.text?.errors?.required">Текст задачи обязателен для заполнения</mat-error>
+  </mat-form-field>
+
+  <button
+    type="submit"
+    mat-raised-button
+    color="primary"
+    [disabled]="operationInFly$ | async">
+    Создать
+  </button>
+
+</form>

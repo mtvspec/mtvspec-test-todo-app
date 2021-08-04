@@ -1,0 +1,69 @@
+<ng-container *ngIf="taskList$ | async as taskList">
+  <mat-toolbar>
+    <div class="spacer"></div>
+    <button mat-button color="primary" routerLink="new">Новая задача</button>
+  </mat-toolbar>
+
+  <div class="spinner-container" *ngIf="dataSource?.loading$ | async">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <table
+    *ngIf="dataSource"
+    mat-table
+    [dataSource]="dataSource"
+    matSort
+    (matSortChange)="onSortChange($event)"
+  >
+    <ng-container matColumnDef="username">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Пользователь</th>
+      <td class="username" mat-cell *matCellDef="let element">
+        {{ element.username }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+      <td class="email" mat-cell *matCellDef="let element">
+        {{ element.email }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="text">
+      <th mat-header-cell *matHeaderCellDef>Текст</th>
+      <td class="text" mat-cell *matCellDef="let element">
+        {{ element.text }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="completed">
+      <th class="completed" mat-header-cell *matHeaderCellDef>Выполнена</th>
+      <td class="completed" mat-cell *matCellDef="let element">
+        <mat-checkbox [checked]="element.completed" disabled></mat-checkbox>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="edited">
+      <th class="edited" mat-header-cell *matHeaderCellDef>Отредактирована</th>
+      <td class="edited" mat-cell *matCellDef="let element">
+        <mat-checkbox [checked]="element.edited" disabled></mat-checkbox>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr
+      mat-row
+      [routerLink]="row.id"
+      (click)="onSelectTask(row)"
+      *matRowDef="let row; columns: displayedColumns"
+    ></tr>
+  </table>
+
+  <mat-paginator
+    [hidePageSize]="true"
+    [length]="taskList.totalCount"
+    [pageSize]="3"
+    [pageSizeOptions]="[2, 4, 6, 10, 20]"
+    (page)="onPageEvent($event)"
+  ></mat-paginator>
+</ng-container>

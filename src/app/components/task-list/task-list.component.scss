@@ -1,0 +1,59 @@
+.loading  {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+}
+
+table {
+  width: 100%;
+  tr:hover {
+    cursor: pointer;
+    background-color: rgb(250, 250, 250);
+  }
+}
+
+td.username {
+  min-width: 120px;
+}
+
+td.email {
+  min-width: 200px;
+}
+
+td.text {
+  width: 100%;
+}
+
+th.completed {
+  min-width: 100px;
+  text-align: center;
+}
+
+th.edited {
+  min-width: 100px;
+  text-align: center;
+}
+
+td.completed {
+  min-width: 100px;
+  text-align: center;
+}
+
+td.edited {
+  min-width: 100px;
+  text-align: center;
+}
+
+.spinner-container {
+  height: 200px;
+  width: 100%;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner-container mat-spinner {
+  margin: 0 auto;
+}
